@@ -7,18 +7,22 @@ using System.Threading.Tasks;
 
 namespace WebCoreTest5.Model
 {
-    [Table("userinfo")]
-    public class userinfo
+    [Table("card2")]
+    public class cardinfo2
     {
         [Key]
         [Display(Name = "主键")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int userId { get; set; }
+        public int id { get; set; }
 
-        public string user_name { get; set; }
+        public string card_num { get; set; }
 
-        //public List<cardinfo> cards { get; }
+        public int open_id { get; set; }
 
-        //public List<cardinfo> cards2 { get; }
+        public userinfo2 open { get; set; }
+
+        public int add_id { get; set; }
+
+        public userinfo2 add { get; set; }
     }
 }

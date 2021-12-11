@@ -58,5 +58,33 @@ namespace WebCoreTest5.Controllers
                 return new JsonResult(new cardinfo());
             }
         }
+
+        [HttpGet]
+        public ActionResult Test2()
+        {
+            var card = _db.cards.Include(c => c.open).Where(p => p.cardId == 1).FirstOrDefault();
+            if (card != null)
+            {
+                return new JsonResult(card);
+            }
+            else
+            {
+                return new JsonResult(new cardinfo());
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Test3()
+        {
+            var card = _db.cards2.Include(c => c.open).Where(p => p.id == 1).FirstOrDefault();
+            if (card != null)
+            {
+                return new JsonResult(card);
+            }
+            else
+            {
+                return new JsonResult(new cardinfo());
+            }
+        }
     }
 }

@@ -11,3 +11,18 @@ create table userinfo
 	userId int primary key auto_increment,
 	user_name varchar(20) not null
 );
+
+
+create table card2
+(
+	id int primary key auto_increment,
+	card_num varchar(30) not null,
+	open_id int not null,
+	add_id int not null
+);
+
+create table userinfo2
+(
+	id int primary key auto_increment,
+	user_name varchar(20) not null
+);
