@@ -1,0 +1,13 @@
+create table card
+(
+	cardId int primary key auto_increment,
+	card_num varchar(30) not null,
+	openId int not null,
+	addId int not null
+);
+
+create table userinfo
+(
+	userId int primary key auto_increment,
+	user_name varchar(20) not null
+);

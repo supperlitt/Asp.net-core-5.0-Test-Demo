@@ -16,7 +16,7 @@ namespace WebCoreTest5.Controllers
     [ApiController]
     public class TestThreeController : BaseController
     {
-        private ApplicationDbContext _db = null;
+        protected ApplicationDbContext _db = null;
 
         public TestThreeController(ApplicationDbContext db)
         {
