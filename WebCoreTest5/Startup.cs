@@ -38,6 +38,7 @@ using WebCoreTest5.Controllers;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Logging;
 
 namespace WebCoreTest5
 {
@@ -52,6 +53,9 @@ namespace WebCoreTest5
         {
             this._Configuration = Configuration;
         }
+
+
+        public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -95,11 +99,14 @@ namespace WebCoreTest5
 
             // options.UseSqlServer(  Configuration.GetConnectionString("DefaultConnection"))
             services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
-                var configuration = builder.Build();
-                options.UseMySql(configuration.GetConnectionString("TestDb"), ServerVersion.AutoDetect(configuration.GetConnectionString("TestDb")));
-            });
+                {
+                    var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
+                    var configuration = builder.Build();
+                    options.UseMySql(configuration.GetConnectionString("TestDb"), ServerVersion.AutoDetect(configuration.GetConnectionString("TestDb")));
+
+                    // 打印 EFCore 执行的真实SQL
+                    options.UseLoggerFactory(MyLoggerFactory);
+                });
 
             services.AddHttpClient();
             services.AddHttpClient(nameof(MyHttpProvider), httpClient =>

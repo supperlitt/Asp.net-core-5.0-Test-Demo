@@ -26,3 +26,16 @@ create table userinfo2
 	id int primary key auto_increment,
 	user_name varchar(20) not null
 );
+
+insert into card(card_num,openId,addId) values('11',2,1);
+insert into card(card_num,openId,addId) values('22',2,1);
+
+insert into card2(card_num,openId,addId) values('11111',1,2);
+
+insert into userinfo(user_name) values('张三0');
+insert into userinfo(user_name) values('张三1');
+insert into userinfo(user_name) values('张三2');
+insert into userinfo(user_name) values('张三3');
+
+insert into userinfo2(user_name) values('zhangsan');
+insert into userinfo2(user_name) values('lisi');

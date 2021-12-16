@@ -35,11 +35,20 @@ namespace WebCoreTest5.Db
                 entity.HasOne(u => u.add).WithMany().HasForeignKey(p => p.addId).OnDelete(DeleteBehavior.NoAction);
             });
 
+            // inner join
             modelBuilder.Entity<cardinfo2>(entity =>
             {
                 entity.HasOne(u => u.open).WithMany().HasForeignKey(p => p.open_id).OnDelete(DeleteBehavior.NoAction);
                 entity.HasOne(u => u.add).WithMany().HasForeignKey(p => p.add_id).OnDelete(DeleteBehavior.NoAction);
             });
+
+            // left join
+
+            //modelBuilder.Entity<cardinfo2>(entity =>
+            //{
+            //    entity.HasOptional(u => u.open).WithMany().HasForeignKey(p => p.open_id).OnDelete(DeleteBehavior.NoAction);
+            //    entity.HasOptional(u => u.add).WithMany().HasForeignKey(p => p.add_id).OnDelete(DeleteBehavior.NoAction);
+            //});
 
             base.OnModelCreating(modelBuilder);
         }
