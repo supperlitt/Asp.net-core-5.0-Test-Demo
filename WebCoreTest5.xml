@@ -4,9 +4,123 @@
         <name>WebCoreTest5</name>
     </assembly>
     <members>
+        <member name="P:WebCoreTest5.Controllers.BaseController.DB">
+            <summary>
+            数据库操作对象
+            </summary>
+        </member>
+        <member name="P:WebCoreTest5.Controllers.BaseController.httpContextAccessor">
+            <summary>
+            Http上下文
+            </summary>
+        </member>
+        <member name="P:WebCoreTest5.Controllers.BaseController.config">
+            <summary>
+            配置
+            </summary>
+        </member>
         <member name="F:WebCoreTest5.Controllers.Const.SecurityKey">
             <summary>
             这里为了演示，写死一个密钥。实际生产环境可以从配置文件读取,这个是用网上工具随便生成的一个密钥
+            </summary>
+        </member>
+        <member name="T:WebCoreTest5.Data.ServiceLocator">
+            <summary>
+            本地服务对象，single
+            </summary>
+        </member>
+        <member name="P:WebCoreTest5.Data.ServiceLocator.Instance">
+            <summary>
+            single对象
+            </summary>
+        </member>
+        <member name="P:WebCoreTest5.IFactory.DB">
+            <summary>
+            数据库操作对象
+            </summary>
+        </member>
+        <member name="P:WebCoreTest5.IFactory.httpContextAccessor">
+            <summary>
+            Http上下文
+            </summary>
+        </member>
+        <member name="P:WebCoreTest5.IFactory.config">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="P:WebCoreTest5.MyFactory.DB">
+            <summary>
+            数据库操作对象
+            </summary>
+        </member>
+        <member name="P:WebCoreTest5.MyFactory.httpContextAccessor">
+            <summary>
+            Http上下文
+            </summary>
+        </member>
+        <member name="P:WebCoreTest5.MyFactory.config">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="T:WebCoreTest5.UserAttribute">
+            <summary>
+            普通用户权限校验
+            </summary>
+        </member>
+        <member name="M:WebCoreTest5.UserAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            action 的处理
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:WebCoreTest5.MyAuthHandler">
+            <summary>
+            身份校验
+            </summary>
+        </member>
+        <member name="F:WebCoreTest5.MyAuthHandler.SchemeName">
+            <summary>
+            就一个字典的Key没啥用处
+            </summary>
+        </member>
+        <member name="F:WebCoreTest5.MyAuthHandler._scheme">
+            <summary>
+            schema
+            </summary>
+        </member>
+        <member name="F:WebCoreTest5.MyAuthHandler._context">
+            <summary>
+            上下文
+            </summary>
+        </member>
+        <member name="M:WebCoreTest5.MyAuthHandler.InitializeAsync(Microsoft.AspNetCore.Authentication.AuthenticationScheme,Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            初始化认证
+            </summary>
+        </member>
+        <member name="M:WebCoreTest5.MyAuthHandler.AuthenticateAsync">
+            <summary>
+            认证处理
+            </summary>
+        </member>
+        <member name="M:WebCoreTest5.MyAuthHandler.GetAuthTicket(System.String,System.String)">
+            <summary>
+            创建一个授权的票据
+            </summary>
+            <param name="name"></param>
+            <param name="role"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebCoreTest5.MyAuthHandler.ForbidAsync(Microsoft.AspNetCore.Authentication.AuthenticationProperties)">
+            <summary>
+            权限不足时的处理
+            </summary>
+        </member>
+        <member name="M:WebCoreTest5.MyAuthHandler.ChallengeAsync(Microsoft.AspNetCore.Authentication.AuthenticationProperties)">
+            <summary>
+            未登录时的处理
             </summary>
         </member>
         <member name="M:WebCoreTest5.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">

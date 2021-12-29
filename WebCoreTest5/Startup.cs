@@ -39,6 +39,7 @@ using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Logging;
+using WebCoreTest5.Data;
 
 namespace WebCoreTest5
 {
@@ -114,6 +115,8 @@ namespace WebCoreTest5
                 httpClient.Timeout = Timeout.InfiniteTimeSpan;
             });
             services.TryAddSingleton<MyHttpProvider>();
+
+            services.AddScoped<IFactory, MyFactory>();
 
             // xss 漏洞处理 
             services.TryAddSingleton<Ganss.XSS.HtmlSanitizer>(o =>
@@ -317,6 +320,14 @@ namespace WebCoreTest5
 
             // http上下文 包含 jwt获取用户信息
             services.AddHttpContextAccessor();
+
+            // 自定义用户认证
+            services.AddAuthentication(options =>
+            {
+                options.AddScheme<MyAuthHandler>(MyAuthHandler.SchemeName, "token add in auth");
+                options.DefaultAuthenticateScheme = MyAuthHandler.SchemeName;
+                options.DefaultChallengeScheme = MyAuthHandler.SchemeName;
+            });
         }
 
         /// <summary>
@@ -326,13 +337,15 @@ namespace WebCoreTest5
         /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            ServiceLocator.Instance = app.ApplicationServices;
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/error");
+
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
