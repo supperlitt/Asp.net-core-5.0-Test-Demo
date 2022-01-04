@@ -328,6 +328,9 @@ namespace WebCoreTest5
                 options.DefaultAuthenticateScheme = MyAuthHandler.SchemeName;
                 options.DefaultChallengeScheme = MyAuthHandler.SchemeName;
             });
+
+            // 定时任务
+            services.AddBackgroundServices();
         }
 
         /// <summary>
